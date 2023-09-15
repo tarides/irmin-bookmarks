@@ -1,0 +1,12 @@
+(executable
+ (public_name irmin-bookmarks)
+ (package irmin-bookmarks-server)
+ (name main)
+ (libraries
+  model
+  defaults
+  irmin-git.unix
+  irmin-server.unix
+  cmdliner
+  fmt
+  fmt.tty))

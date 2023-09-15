@@ -1,0 +1,17 @@
+(install
+ (package irmin-bookmarks-extension)
+ (section lib)
+ (files
+  normalize.css
+  manifest.json
+  (options/options.js as options/options.js)
+  (options/index.html as options/index.html)
+  (options/style.css as options/style.css)
+  (popup/popup.js as popup/popup.js)
+  (popup/index.html as popup/index.html)
+  (popup/style.css as popup/style.css)
+  (view/view.js as view/view.js)
+  (view/index.html as view/index.html)
+  (view/style.css as view/style.css)
+  (icons/icon.png as icons/icon.png)
+  (icons/icon@2x.png as icons/icon@2x.png)))

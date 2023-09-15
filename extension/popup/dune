@@ -1,0 +1,18 @@
+(executable
+ (name popup)
+ (modes js)
+ (modules popup ui)
+ (libraries
+  shared
+  js_of_ocaml-lwt
+  brr
+  digestif.ocaml
+  checkseum.ocaml
+  irmin-git
+  irmin-client.jsoo))
+
+(rule
+ (targets popup.js)
+ (deps popup.bc.js)
+ (action
+  (run cp %{deps} %{targets})))

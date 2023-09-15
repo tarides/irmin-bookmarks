@@ -1,0 +1,11 @@
+(executable
+ (name options)
+ (modes js)
+ (modules options)
+ (libraries shared js_of_ocaml-lwt brr))
+
+(rule
+ (targets options.js)
+ (deps options.bc.js)
+ (action
+  (run cp %{deps} %{targets})))

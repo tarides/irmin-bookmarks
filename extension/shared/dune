@@ -1,0 +1,11 @@
+(library
+ (name shared)
+ (libraries
+  model
+  defaults
+  js_of_ocaml-lwt
+  brr
+  digestif.ocaml
+  checkseum.ocaml
+  irmin-git
+  irmin-client.jsoo))

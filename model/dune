@@ -1,0 +1,5 @@
+(library
+ (name model)
+ (libraries irmin)
+ (preprocess
+  (pps ppx_irmin)))

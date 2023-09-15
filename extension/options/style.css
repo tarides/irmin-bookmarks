@@ -1,0 +1,27 @@
+body {
+  padding: 16px;
+  display: flex;
+  font-size: 16px;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+
+label {
+  font-size: 0.9em;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  margin: 4px 0 16px 0;
+  border-radius: 6px;
+  border: 1px solid #333;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

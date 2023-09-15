@@ -1,0 +1,70 @@
+body {
+  width: 300px;
+  padding: 16px;
+  display: flex;
+  font-size: 16px;
+  flex-direction: column;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.error,
+.info {
+  text-align: center;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+header a {
+  margin-bottom: 16px;
+  font-size: 0.9em;
+  font-variant: small-caps;
+  padding: 4px;
+  color: #11a;
+  align-self: end;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.25em;
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+label {
+  font-size: 0.9em;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  margin: 4px 0 16px 0;
+  border-radius: 6px;
+  border: 1px solid #333;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 4px 8px;
+}
+
+#bm-save {
+  margin-left: 16px;
+}

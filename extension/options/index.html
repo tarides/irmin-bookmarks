@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Irmin bookmarks options</title>
+  </head>
+  <body>
+    <form id="prefs" name="prefs">
+      <label for="port">Server Port</label>
+      <input
+        id="port"
+        name="port"
+        type="number"
+        min="1"
+        max="65535"
+        autofocus=""
+        required=""
+        title="Port must be in the range of 1-65535"
+      />
+      <div id="buttons">
+        <button type="submit" id="save">Save</button>
+      </div>
+    </form>
+    <script src="options.js"></script>
+  </body>
+</html>
