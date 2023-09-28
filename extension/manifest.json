@@ -18,5 +18,5 @@
     "default_icon": "icons/icon@2x.png",
     "default_title": "Add bookmark!",
     "default_popup": "popup/index.html"
-  },
+  }
 }
