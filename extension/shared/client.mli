@@ -1,5 +1,4 @@
 type t
-
 type connect_result = (t, string) result
 
 val connect : unit -> connect_result Lwt.t

@@ -1,5 +1,4 @@
 open Shared
-open Ext
 
 let main () =
   let open Lwt.Syntax in

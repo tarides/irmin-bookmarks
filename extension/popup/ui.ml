@@ -1,5 +1,4 @@
 open Shared
-open Ext
 open Lwt.Syntax
 
 type state = { client : Client.t; model : Model.t; error : string option }

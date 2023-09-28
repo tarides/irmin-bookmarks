@@ -1,5 +1,4 @@
 open Shared
-open Ext
 open Lwt.Syntax
 
 type connected = { client : Client.t }
