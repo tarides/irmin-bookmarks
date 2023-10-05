@@ -8,10 +8,9 @@ end
 module Codec = Irmin_server.Conn.Codec.Bin
 include Irmin_client_jsoo.Make_codec (Codec) (Store)
 open Lwt.Syntax
+module Info_jsoo = Irmin_client_jsoo.Info (Info)
 
-let info =
-  let module Info = Irmin_client_jsoo.Info (Info) in
-  Info.v ~author:"irmin-bookmarks"
+let author = "irmin-bookmarks"
 
 type connect_result = (t, string) result
 
@@ -27,6 +26,28 @@ let connect () =
       Lwt.return
         (Error (Fmt.str "Could not connect to server on port %d" prefs.port)))
 
+(* Utility function to return exceptions as errors so that UI can show them *)
+let catch f =
+  Lwt.catch
+    (fun () ->
+      let+ _ = f () in
+      Ok ())
+    (fun exn -> Lwt.return_error (Printexc.to_string exn))
+
+let update t f ~info =
+  catch @@ fun () ->
+  let repo = repo t in
+  (* Get latest tree for main branch *)
+  let* main = of_branch repo Store.Branch.main in
+  let* head = Head.get main in
+  (* Apply [f] to the tree on main to get our new tree *)
+  let* tree = Commit.tree head |> f in
+  (* Commit this tree *)
+  let* commit = Commit.v repo ~info ~parents:[ Commit.key head ] tree in
+  (* Merge commit to main *)
+  let* main = of_branch repo Branch.main in
+  merge_with_commit main commit ~info:(Info_jsoo.v ~author "Merge to main")
+
 let list t =
   let* tree = tree t in
   Tree.fold ~order:`Undefined
@@ -37,17 +58,16 @@ let load t model =
   let key = Model.key_path model in
   find t key
 
-let catch f =
-  Lwt.catch
-    (fun () ->
-      let+ _ = f () in
-      Ok ())
-    (fun exn -> Lwt.return_error (Printexc.to_string exn))
-
 let save t model =
-  let key = Model.key_path model in
-  catch @@ fun () -> set_exn ~info:(info "Update %s" model.url) t key model
+  let f tree =
+    let key = Model.key_path model in
+    Tree.add tree key model
+  in
+  update t f ~info:(Info_jsoo.v ~author "Update %s" model.url ())
 
 let delete t model =
-  let key = Model.key_path model in
-  catch @@ fun () -> remove_exn ~info:(info "Delete %s" model.url) t key
+  let f tree =
+    let key = Model.key_path model in
+    Tree.remove tree key
+  in
+  update t f ~info:(Info_jsoo.v ~author "Delete %s" model.url ())

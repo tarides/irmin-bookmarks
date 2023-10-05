@@ -64,7 +64,8 @@ let form (model : Model.t) save =
     Element.bind_on_click save_btn @@ fun _ ->
     let name = Element.value_string name_input in
     let notes = Element.value_string notes in
-    let model = { model with name; notes } in
+    let updated_at = Date.now () in
+    let model = Model.update model ~updated_at ~name ~notes in
     save model
   in
   let buttons =
