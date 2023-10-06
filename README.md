@@ -6,20 +6,16 @@ repository.
 
 ## Building
 
-This currently depends on unreleased code:
+Install dependencies
 
 ```sh
-opam pin add irmin-server https://github.com/metanivek/irmin.git#irmin-server/improves --with-version=3.8.0 -y
+opam switch create . --deps-only -y ocaml-base-compiler.4.14.0
 ```
 
-```sh
-opam pin add irmin-client https://github.com/metanivek/irmin.git#irmin-server/improves --with-version=3.8.0 -y
-```
-
-Once you have dependencies (TODO have opam files) installed,
+Build
 
 ```sh
-make build
+make clean build
 ```
 
 Now the extension will be in `irmin-bookmarks-extension`.

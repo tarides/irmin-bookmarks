@@ -1,0 +1,20 @@
+opam-version: "2.0"
+maintainer:   "Tarides"
+authors:      ["Tarides"]
+homepage:     "https://github.com/tarides/irmin-bookmarks"
+bug-reports:  "https://github.com/tarides/irmin-bookmarks/issues"
+synopsis: """
+Server for browser extension for saving bookmarks to a local git repository
+"""
+description: """
+Server for browser extension for saving bookmarks to a local git repository
+"""
+depends: [
+  "dune"
+  "fmt"
+  "lwt"
+  "cmdliner"
+  "irmin-git"
+  "irmin-server"
+]
+
