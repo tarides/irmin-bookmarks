@@ -38,7 +38,7 @@ let update t f ~info =
   catch @@ fun () ->
   let repo = repo t in
   (* Get latest tree for main branch *)
-  let* main = of_branch repo Store.Branch.main in
+  let* main = of_branch repo Branch.main in
   let* head = Head.get main in
   (* Apply [f] to the tree on main to get our new tree *)
   let* tree = Commit.tree head |> f in
