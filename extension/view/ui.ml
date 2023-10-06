@@ -42,7 +42,7 @@ let rec render t =
     | Error e -> Lwt.return [ msg "error" e ]
     | Connected { client } ->
         let () =
-          Js_of_ocaml_lwt.Lwt_js_events.async @@ fun () ->
+          Lwt.async @@ fun () ->
           let* items = Client.list client in
           render (Loaded { client; items })
         in

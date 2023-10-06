@@ -12,14 +12,10 @@ let main () =
         Brr.Ev.prevent_default ev;
         match Element.value_int port_field with
         | None -> ()
-        | Some port ->
-            Js_of_ocaml_lwt.Lwt_js_events.async @@ fun () ->
-            Preferences.(save { port }))
+        | Some port -> Lwt.async @@ fun () -> Preferences.(save { port }))
       (Brr.El.as_target form)
   in
 
   Lwt.return ()
 
-let () =
-  Document.on_content_loaded @@ fun _ ->
-  Js_of_ocaml_lwt.Lwt_js_events.async main
+let () = Document.on_content_loaded @@ fun _ -> Lwt.async main

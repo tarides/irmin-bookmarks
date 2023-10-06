@@ -14,7 +14,7 @@ let header () =
   let _ =
     Element.bind_on_click view_all @@ fun _ ->
     let view_page = Browser.runtime |> Runtime.get_url "../view/index.html" in
-    Js_of_ocaml_lwt.Lwt_js_events.async @@ fun () ->
+    Lwt.async @@ fun () ->
     let+ _ = Browser.tabs |> Tabs.create view_page in
     Window.close ()
   in
@@ -79,7 +79,7 @@ let rec render t =
     | Disconnected e -> Lwt.return [ msg "error" e ]
     | Connected { client; model; _ } ->
         let () =
-          Js_of_ocaml_lwt.Lwt_js_events.async @@ fun () ->
+          Lwt.async @@ fun () ->
           let* model =
             let+ saved_model = Client.load client model in
             match saved_model with None -> model | Some m -> m
@@ -91,7 +91,7 @@ let rec render t =
         let ui =
           header ()
           :: form model (fun model ->
-                 Js_of_ocaml_lwt.Lwt_js_events.async @@ fun () ->
+                 Lwt.async @@ fun () ->
                  let* r = Client.save client model in
                  match r with
                  | Ok _ -> Window.close () |> Lwt.return
